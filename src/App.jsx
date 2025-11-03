@@ -1,28 +1,60 @@
-import { useState } from 'react'
+import Hero from './components/Hero';
+import About from './components/About';
+import Showcase from './components/Showcase';
+import Contact from './components/Contact';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Jeeva',
+    jobTitle: 'Backend Developer',
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'Tamil Nadu',
+      addressCountry: 'India',
+    },
+    knowsAbout: [
+      'Spring Boot',
+      'Spring Security',
+      'JWT',
+      'OAuth2',
+      'REST API Design',
+    ],
+    sameAs: [
+      'https://github.com/',
+      'https://www.linkedin.com/',
+    ],
+    description:
+      'Backend developer specializing in Spring Boot, Spring Security, and JWT authentication. Passionate about teaching and inclusive group travel logistics.',
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-white text-amber-950">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:p-3 focus:bg-amber-100 focus:rounded">
+        Skip to content
+      </a>
+      <Hero />
+      <main id="main">
+        <About />
+        <Showcase />
+        <Contact />
+      </main>
+      <footer className="border-t border-amber-900/10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-amber-900/70">© {new Date().getFullYear()} Jeeva • Built with care and warm tones</p>
+          <nav className="text-sm flex items-center gap-4">
+            <a href="#about" className="text-amber-900/70 hover:text-amber-900">About</a>
+            <a href="#skills" className="text-amber-900/70 hover:text-amber-900">Skills</a>
+            <a href="#showcase" className="text-amber-900/70 hover:text-amber-900">Projects</a>
+            <a href="#tutorials" className="text-amber-900/70 hover:text-amber-900">Tutorials</a>
+            <a href="#contact" className="text-amber-900/70 hover:text-amber-900">Contact</a>
+          </nav>
         </div>
-      </div>
+      </footer>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
